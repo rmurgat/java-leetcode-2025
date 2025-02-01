@@ -39,6 +39,58 @@ class MenuPractice1 {
         System.out.println(" Answer 1 :" + lib.groupAnagrams(input));
     }
 
+    public void printingTopKFrequentEle() {
+        ListBundle01 lib = new ListBundle01();
+        System.out.println(" [ 347. Top K Frequent Element ]");
+        int[] res = lib.topKFrequent(new int[]{1,2,2,3,3,3}, 2);
+        System.out.println(" Answer 1: ");
+        for(int i: res) {
+            System.out.printf("%d,", i);
+        }
+    }
+
+    public void printingEncodeDecode() {
+        ListBundle01 lib = new ListBundle01();
+        System.out.println(" [ 271. Encode and Decode String ]");   
+        List<String> strs = new ArrayList<>(Arrays.asList("neet","code","love","you"));
+        String encoded = lib.encode(strs);
+        System.out.println("encode:" + encoded);
+        List<String> strs1 = lib.decode(encoded);
+        System.out.println("decoding:");
+        for(String s: strs1) {
+            System.out.printf("%s,", s);
+        }
+        System.out.println(" mira esto: " + lib.encode(Arrays.asList()));
+        System.out.println(" mira esto 2: " + lib.encode(Arrays.asList("")));
+    }
+
+    public void printingProductExceptSelf() {
+        ListBundle01 lib = new ListBundle01();
+        System.out.println(" [ 238. Product of Array Except Self ]");
+        int[] res = lib.productExceptSelf_1(new int[]{1,2,4,6});
+        System.out.print(" Answer 1: [");
+        Arrays.stream(res).forEach(n->System.out.printf("%d,",n));
+        System.out.println("]");
+        int[] res1 = lib.productExceptSelf_1(new int[]{4,2});
+        System.out.print(" Answer 2: [");
+        Arrays.stream(res1).forEach(n->System.out.printf("%d,",n));
+        System.out.println("]");
+        int[] res2 = lib.productExceptSelf_2(new int[]{1,2,4,6});
+        System.out.print(" Answer 3: [");
+        Arrays.stream(res2).forEach(n->System.out.printf("%d,",n));
+        System.out.println("]");
+        int[] res3 = lib.productExceptSelf_2(new int[]{4,2});
+        System.out.print(" Answer 4: [");
+        Arrays.stream(res3).forEach(n->System.out.printf("%d,",n));
+        System.out.println("]");
+    }
+
+    public void printingReplaceElem() {
+        ListBundle01 lib = new ListBundle01();
+        System.out.println(" [ 1299. Replace Element ]");
+
+    }
+
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
         MenuPractice1 app = new MenuPractice1();
@@ -52,7 +104,7 @@ class MenuPractice1 {
         System.out.println("7. Length of Last Word (LC#58)            27. Trapping Rain Water (LC#42)              47. Copy Linked List with Random Pointer(LC#138)");
         System.out.println("8. Longest Common prefix (lc#14)          28. Best Time to Buy and Sell Stock (LC#121) 48. Find Minimum in Rotated Sorted Array(LC#153)");
         System.out.println("9. Top K Frequent Element (LC#347)        29. Longest substr Without Rep Chars(LC#3)   49. Search in Rotated Sorted Array (LC#33)");
-        System.out.println("10. Encode and Decode String (neetcode)   30. Longest Repeat Char Replacement (LC#424) 50. Invert Binary Tree (LC#226)");
+        System.out.println("10. Encode and Decode String (LC#271)     30. Longest Repeat Char Replacement (LC#424) 50. Invert Binary Tree (LC#226)");
         System.out.println("11. Product of Array Except Self (LC#238) 31. Valid Parentheses (LC#20)                51. Maximum Depth of Binary Tree (LC#111)");
         System.out.println("12. Pascal's Triangle (LC#118)            32. Minimum Stack (LC#155)                   52. Diameter of Binary Tree (LC#543)");
         System.out.println("13. Unique Email Addresses (LC#929)       33. Generate Parentheses (LC#22)             53. Balanced Binary Tree (LC#110)");
@@ -70,10 +122,13 @@ class MenuPractice1 {
             case 2: app.printingContainsDuplicate(); break;
             case 3: app.printingValidAnagram(); break;
             case 4: app.printingGroupAnagram(); break;
+            case 5: app.printingReplaceElem(); break;
+            case 9: app.printingTopKFrequentEle(); break;
+            case 10: app.printingEncodeDecode(); break;
+            case 11: app.printingProductExceptSelf(); break;
 
             default: break;
         }
         keyboard.close();
     }
-
 }

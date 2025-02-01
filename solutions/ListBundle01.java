@@ -2,9 +2,11 @@ package solutions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,6 +24,18 @@ public class ListBundle01 {
             ht.put(i, nums[i]);
         }
         return null;
+    }
+
+    public boolean isPalindrome(String s) {
+        int l = 0, r = s.length()-1;
+        while (l<r) {
+            while ( l<r && !Character.isLetterOrDigit(s.charAt(l))) l++;
+            while ( l<r && !Character.isLetterOrDigit(s.charAt(r))) r--;
+            if (Character.toLowerCase(s.charAt(l))!=Character.toLowerCase(s.charAt(r))) return false;
+            l++;
+            r--;
+        }
+        return true;
     }
 
     public boolean hasDuplicate_1(int[] nums) {
@@ -86,4 +100,69 @@ public class ListBundle01 {
         return ht.values().stream().collect(Collectors.toList());
     }
 
+    public int[] topKFrequent(int[] nums, int k) {
+        int[] res = new int[k];
+        Hashtable<Integer, Integer> ht = new Hashtable<>();
+        for(int n:nums) {
+            ht.put(Integer.valueOf(n), 1 + ht.getOrDefault(Integer.valueOf(n), 0));
+        }
+        List<Map.Entry<Integer, Integer>> sorted = ht.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toList());
+        int i = 0;
+        while (i<k) {
+            Map.Entry<Integer,Integer> e = sorted.get(i);
+            res[i] = e.getKey();
+            i++;
+        }
+        return res; 
+    }
+
+    public String encode(List<String> strs) {
+        String ans = "";
+        if(strs.size()==0) return null;
+        String tmp = String.join("|", strs);
+        for (char c: tmp.toCharArray()) {
+            ans = ans + (char)(c^30);
+        }
+        return ans;
+    }
+    public List<String> decode(String str) {
+        String ans = "";
+        if(str==null) return new ArrayList<>();
+        if(str.equals("")) new ArrayList<>(Arrays.asList(""));
+        for (char c: str.toCharArray()) {
+            ans = ans + (char)(c^30);
+        }
+        String[] ans1 = ans.split("\\|"); 
+        return Arrays.asList(ans1);
+    }
+
+    public int[] productExceptSelf_1(int[] nums) {
+        int[] res = new int[nums.length];
+        for (int i=0; i<nums.length; i++) {
+            int p = 1, j=0;
+            do {
+                if(i!=j) p = p * nums[j];
+                j++;
+            } while(j<nums.length);
+            res[i] = p;
+        }
+        return res;
+    }
+    public int[] productExceptSelf_2(int[] nums) {
+        int[] ans = new int[nums.length];
+        int p = 1, l=0, r=nums.length-1;
+        while(l<nums.length) {
+            ans[l] = p;
+            p = p * nums[l];
+            l++;
+        }
+        p = 1;
+        while(r>-1) {
+            ans[r] = p * ans[r];
+            p = p * nums[r];
+            r--;
+        }
+        return ans;
+    }
+    
 }
