@@ -1,8 +1,11 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 import java.util.Scanner;
+
+import solutions.TreeBundle01;
+import solutions.TreeNode;
+import solutions.LinkedListBundle01;
+import solutions.ListNode;
+import solutions.StackBundle01;
 
 class MenuRecall1 {
 
@@ -94,28 +97,58 @@ class MenuRecall1 {
         sortIntArray(nums);
         System.out.println(" Sorting Array(int) by me: ");
         Arrays.stream(nums).forEach(n->System.out.println(n));
+    }
 
+    public void printingTraversingBTree() {
+        TreeBundle01 lib = new TreeBundle01();
+        TreeNode head = lib.insertInOrder(new int[]{16,18,6,12,13,1,2,3,4,5,14,15,7,17,8,9,10,11});
+        System.out.println(" [ Traversing bTree ]");
+        System.out.println("original:");
+        lib.prettyTree(head);
+        System.out.print(" pre-Order: ["); lib.printPreOrder(head);
+        System.out.print("]\n post-Order: ["); lib.printPostOrder(head);
+        System.out.print("]\n in-Order: ["); lib.printInOrder(head);
+        System.out.println("]");
+    }
 
+    public void printingTraversingLinkedlist() {
+        LinkedListBundle01 lib = new LinkedListBundle01();
+        ListNode head = lib.addArray(new int[]{1,2,3,4,5,6,7,8,9,10});
+        System.out.println(" [ Traversing linkedlist ]");
+        System.out.print("linkedlist content: ["); lib.printLinkedList(head); System.out.println("]");
+    }
 
+    public void printingUsingStacks() {
+        StackBundle01 lib = new StackBundle01();
+        System.out.println(" [ Using Stacks ]");
+        System.out.println("Answer 1: " + (lib.isValidParentheses("([{}])")?"true":false));
+        System.out.println("Answer 2: " + (lib.isValidParentheses("[(])")?"true":false));
     }
 
     public static void main(String[] ars) {
         Scanner scan = new Scanner(System.in);
         MenuRecall1 app = new MenuRecall1();
-        System.out.println("[ Menu Recalling Algoritms 01 ] ");
-        System.out.println("1. Binary Search ");
-        System.out.println("2. Two Pointers ");
-        System.out.println("3. Sort Array");
+        System.out.println("[ Menu Recalling Java Collection ]    [ Menu Algoritms ]              [ My Challenge ]");
+        System.out.println("1. basic collection Array             20. Binary Search               1. House Robber");
+        System.out.println("2. basic collection List              21. Two Pointers                2. ");
+        System.out.println("3. basic collection HashTable         22. Sort Array ");
+        System.out.println("4. basic collection Stack             23. Usings Stacks ");
+        System.out.println("5. basic collection Queue             24. Traversing Linkedlist ");
+        System.out.println("6. basic collection Set               25. Traversing btree ");
+        System.out.println("7. basic collection Dequeue           26. Monotonic Stack ");
+        System.out.println("8. basic collection EnumSet           27. Braid in Array ");
         int opc = scan.nextInt();
         switch(opc) {
-            case 1: app.printingBinarySearch(); break;
-            case 2: app.printingTwoPointers(); break;
-            case 3: app.printingSortingArray(); break;
-            case 4: app.
+            case 20: app.printingBinarySearch(); break;
+            case 21: app.printingTwoPointers(); break;
+            case 22: app.printingSortingArray(); break;
+            case 23: app.printingUsingStacks(); break;
+            case 24: app.printingTraversingLinkedlist(); break;
+            case 25: app.printingTraversingBTree(); break;
             default: 
                 System.out.println("Not option recognized");
         }
-
+        scan.close();
     }
 
 }
