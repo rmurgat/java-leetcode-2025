@@ -20,6 +20,35 @@ public class StackBundle01 {
             }
         }
         return (stack.empty()? true:false);
-    }    
+    }
+
+    public Stack<Integer> getMonotonicIncreasingStack(int[] nums) {
+        Stack<Integer> stack = new Stack<>();
+        for (int i=0; i<nums.length; i++) {
+            while (!stack.empty() && stack.peek()>nums[i]) 
+                stack.pop();
+            stack.push(nums[i]);
+        }
+        return stack;
+    }
+
+    public Stack<Integer> getMonotonicDecreasingStack(int[] nums) {
+        Stack<Integer> stack = new Stack<>();
+        for (int i=0; i<nums.length; i++) {
+            while (!stack.empty() && stack.peek()<nums[i]) 
+                stack.pop();
+            stack.push(nums[i]);
+        }
+        return stack;
+    }
+
+    public void printingIntegerStack(Stack<Integer> stack) {
+        System.out.print(" top -> [");
+        while(!stack.empty()) {
+            Integer val = stack.pop();
+            System.out.print(val + ", ");
+        }
+        System.out.println("]");
+    }
 
 }

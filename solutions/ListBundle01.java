@@ -3,7 +3,6 @@ package solutions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -164,5 +163,51 @@ public class ListBundle01 {
         }
         return ans;
     }
-    
+
+    public int rob_0(int[] nums) {
+        int rob1=0,rob2=0;
+        for(int n: nums) {
+            int tmp = Math.max(n+rob1,rob2);
+            rob1 = rob2;
+            rob2 = tmp;
+        }
+        return rob2;
+    }
+
+    public int rob_1(int[] nums) {
+        int a = 0, b = 0; boolean twist=true;
+        for (int n: nums) {
+            if(twist) a = Math.max(a + n, b);
+            else b = Math.max(b + n, a);
+            twist=!twist;
+        }
+        return Math.max(a,b);
+    }
+
+    public int rob_2(int[] nums) {
+        return rob_2(nums,nums.length-1);
+    }
+
+    public int rob_2(int[] nums, int curr) {
+        if (curr<0) return 0;
+        return Math.max(rob_2(nums,curr-2) + nums[curr], rob_2(nums,curr-1));
+    }
+    private int[] memo;
+
+    public int rob_3(int[] nums) {
+        memo = new int[nums.length];
+        Arrays.fill(memo,-1);
+        int ans =  dfs(nums, 0);       
+        Arrays.stream(memo).forEach(System.out::println);
+        return ans; 
+    }
+    private int dfs(int[] nums, int i) {
+        if(i>=nums.length) {
+            return 0;
+        }
+        if(memo[i]!=-1) return memo[i];
+        memo[i] = Math.max(dfs(nums,i+1), nums[i] + dfs(nums,i+2));
+        return memo[i];
+    }
+
 }
