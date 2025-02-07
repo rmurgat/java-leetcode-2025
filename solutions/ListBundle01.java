@@ -210,4 +210,11 @@ public class ListBundle01 {
         return memo[i];
     }
 
+    public int robII_1(int[] nums) {
+        if (nums.length==1) return nums[0];
+        int[] nums1 = Arrays.copyOfRange(nums, 0, nums.length-1);
+        int[] nums2 = Arrays.copyOfRange(nums, 1, nums.length);
+        return Math.max(rob_1(nums1),rob_1(nums2));
+    }
+
 }
